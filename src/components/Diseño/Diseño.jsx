@@ -4,6 +4,7 @@ import Historia from "../Historia/Historia";
 import Historial from "../Historial/Historial";
 import data from "../data.json";
 
+
 const historial = [];
 
 export default class Diseño extends Component {
@@ -21,6 +22,7 @@ export default class Diseño extends Component {
     componentDidUpdate(estadoPrevio) {
         if (estadoPrevio.contador !== this.state.contador) {
             historial.push(this.state.seleccionAnterior);
+          
         }
     }
 
@@ -29,7 +31,9 @@ export default class Diseño extends Component {
         const contador = this.state.contador;
         const anterior = this.state.seleccionAnterior;
         if (contador >= 7) {
-            alert("FIN.");
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 3000);
 
         } else if (id === "A" && anterior !== "A") {
             this.setState({
@@ -40,12 +44,12 @@ export default class Diseño extends Component {
             this.setState({
                 contador: contador + 2,
             });
-        } else if (id === "B" && anterior !== "B") {
+        } else if (id === "B" && anterior === "A") {
             this.setState({
-                contador: contador + 2,
+                contador: contador + 3,
                 seleccionAnterior: "B",
             });
-        } else if (id === "B" && anterior === "B") {
+        } else if (id === "B") {
             this.setState({
                 contador: contador + 2,
                 seleccionAnterior: "B",
